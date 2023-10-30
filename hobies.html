@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        /* Criando forma de colocar imagem por imagem após clicar o botão, código abaixo*/
+        document.addEventListener("DOMContentLoaded", function () {
+    const slider = document.querySelector(".image-slider");
+    const images = document.querySelectorAll(".image");
+    let currentImage = 0;
+        /*Criando a função de lado a lado*/
+    function showImage(index) {
+        images[currentImage].classList.remove("active");
+        images[index].classList.add("active");
+        currentImage = index;
+    }
+        /*Ao clicar em próximo ir para imagem ao lado*/
+    function nextImage() {
+        if (currentImage < images.length - 1) {
+            showImage(currentImage + 1);
+        }
+    }
+
+    function prevImage() {
+        if (currentImage > 0) {
+            showImage(currentImage - 1);
+        }
+    }
+
+    document.querySelector(".next").addEventListener("click", nextImage);
+    document.querySelector(".prev").addEventListener("click", prevImage);
+
+    // Iniciar com a primeira imagem visível
+    showImage(currentImage);
+});
+
+    </script>
+     <style>
+        /*Meu plano de fundo padrão do site*/
+        html{
+            min-height: 800px;
+            background-image: url(imagem/computadorFundo.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        
+        /* Estilos para o contêiner principal */
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            height: 65vh; /* Tamanho da janela de visualização */
+            margin-top: 150px;
+            padding-right: 200px;
+            overflow: hidden;
+        }
+    
+        /* Estilos para o slider de imagens */
+        .image-slider {
+            display: flex;
+            transition: transform 0.3s ease-in-out;
+            
+        }
+    
+        .image {
+            
+            right: 20cm;
+            height: 20cm;
+            flex: 0 0 100%;
+            text-align: center;
+            display: none            
+        }
+        
+        .image.active {
+            display: block;
+        }
+      
+    
+        /* Estilos para os botões de navegação */
+        .prev, .next {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: salmon;
+            color: white;
+            border-radius: 10px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+    
+        .prev {
+            left: 450px;
+        }
+    
+        .next {
+            right: 100px;
+        }
+        p{
+            color: white;
+            background-color: salmon; 
+        }
+        p a{
+            color: white;
+            background-color: salmon; 
+        }
+        #imagem2{
+            right: 80cm;
+            height: 20cm;          
+
+        }
+    @media screen and (max-width: 1240px) {
+    /* Estilos para telas menores */
+    .container {
+        padding-right: 20px;
+    }
+    /*Deixando o botão próximo, mais abaixo*/
+    .prev, .next {
+        left: 20px;
+        right: 200px;
+        margin-top: 300px;
+    }
+    /*Ajustando imagem*/
+    .image {
+        height: auto;
+    }
+    p {
+        left: 1240px;
+        right: 200px;
+        margin-top: 300px;
+        background-color: transparent;
+    }
+    p a{
+        margin-left: 0;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-slider">
+            <div class="image active">
+                <img src="imagem/bikeRe.JPG" alt="Imagem 1">
+                <p><a>Sou amante de um bom pedal.</a></p>
+            </div>
+            <div class="image">
+                <a>
+                <img src="imagem/cachoeiraRe.JPG" alt="Imagem 2"></a>
+                <p><a>Amante de uma boa cachoeira da minha cidade.</a></p>
+            </div>
+            <div class="image">
+                <img src="imagem/trilhaRe.JPG" alt="Imagem 3">
+                <p><a>Também amo fazer trilhas e subir pedras.</a></p>
+            </div>   
+                    
+        </div>
+        <button class="prev">Anterior</button>
+        <button class="next">Próxima</button>
+    </div>
+    <script src="seu_script.js"></script>
+</body>
+</html>
